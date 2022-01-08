@@ -1,1 +1,737 @@
-!function(s){"use strict";var e={init:()=>{e.stickyHeader(),e.dropdownAnimation(),e.headerButtons(),e.isotope(),e.onepageHeaderOffset(),e.onepageNavLinks(),e.anchorSmoothScroll(),e.svgInject(),e.backgroundImage(),e.backgroundImageMobile(),e.imageHoverOverlay(),e.rellax(),e.scrollCue(),e.showMoreItems(),e.owlCarousel(),e.heroSlider(),e.animatedCaptions(),e.lightbox(),e.plyr(),e.progressBar(),e.pageProgress(),e.counterUp(),e.bsTooltips(),e.bsPopovers(),e.bsModal(),e.iTooltip(),e.contactForm(),e.pricingSwitcher(),e.textRotator(),e.codeSnippet()},stickyHeader:()=>{s(".navbar").length&&new Headhesive(".navbar",{offset:350,offsetSide:"top",classes:{clone:"banner--clone fixed ",stick:"banner--stick",unstick:"banner--unstick"},onStick:function(){s(s.SmartMenus.Bootstrap.init),s(".navbar:not(.fixed) .language-select .dropdown-menu").removeClass("show")},onUnstick:function(){s(".navbar.fixed .language-select .dropdown-menu").removeClass("show")}})},dropdownAnimation:()=>{s(".navbar .navbar-nav:not(.navbar-nav-other)").bind({"show.smapi":function(t,e){s(e).removeClass("hide-animation").addClass("show-animation")},"hide.smapi":function(t,e){s(e).removeClass("show-animation").addClass("hide-animation")}}).on("animationend webkitAnimationEnd oanimationend MSAnimationEnd","ul",function(t){s(this).removeClass("show-animation hide-animation"),t.stopPropagation()})},headerButtons:()=>{var e=s(".hamburger.animate"),a=(s(".language-select .dropdown-menu"),s(".offcanvas-nav")),t=s('[data-toggle="offcanvas-nav"]'),o=s(".offcanvas-nav-close"),n=s(".offcanvas-info"),i=s(".offcanvas-info-close"),r=s('[data-toggle="offcanvas-info"]');e.on("click",function(){e.toggleClass("active")}),t.on("click",function(t){t.stopPropagation(),a.toggleClass("open")}),a.on("click",function(t){t.stopPropagation()}),o.on("click",function(t){a.removeClass("open"),e.removeClass("active")}),r.on("click",function(t){t.stopPropagation(),n.toggleClass("open")}),n.on("click",function(t){t.stopPropagation()}),s(document).on("click",function(){a.removeClass("open"),n.removeClass("open"),e.removeClass("active")}),i.on("click",function(t){n.removeClass("open")}),s(".onepage .navbar li a.scroll").on("click",function(){a.removeClass("open"),e.removeClass("active")})},isotope:()=>{s(".grid").each(function(t,e){var e=s(e),a=e.find(".isotope").imagesLoaded(function(){a.isotope({itemSelector:".item",layoutMode:"masonry",percentPosition:!0,masonry:{columnWidth:a.width()/12},transitionDuration:"0.7s"})});s(window).resize(function(){a.isotope({masonry:{columnWidth:a.width()/12}})}),s(window).on("load",function(){a.isotope({masonry:{columnWidth:a.width()/12}})}),e.find(".isotope-filter").on("click","a",function(){var t=s(this).attr("data-filter");a.isotope({filter:t})})}),s(".isotope-filter").each(function(t,e){var a=s(e);a.on("click","a",function(){a.find(".active").removeClass("active"),s(this).addClass("active")})})},onepageHeaderOffset:()=>{var t=s(".navbar:not(.banner--clone)").outerHeight(),e={"padding-top":"75px","margin-top":"-75px"};s(".onepage section").css(e);t={"padding-top":t+"px","margin-top":"-"+t+"px"};s(".onepage section:first-of-type").css(t)},onepageNavLinks:()=>{s('.onepage .navbar ul.navbar-nav a[href="#"]').on("click",function(t){t.preventDefault()})},anchorSmoothScroll:()=>{s(function(){function e(t){(t=t.length?t:s("[name="+this.hash.slice(1)+"]")).length&&s("html,body").animate({scrollTop:t.offset().top},1500,"easeInOutExpo")}setTimeout(function(){var t;location.hash&&(window.scrollTo(0,0),t=location.hash.split("#"),e(s("#"+t[1])))},1),s('a.scroll[href*="#"]:not([href="#"])').on("click",function(){if(location.pathname.replace(/^\//,"")==this.pathname.replace(/^\//,"")&&location.hostname==this.hostname)return e(s(this.hash)),!1})})},svgInject:()=>{SVGInject.setOptions({onFail:function(t,e){t.classList.remove("svg-inject")}}),document.addEventListener("DOMContentLoaded",function(){SVGInject(document.querySelectorAll("img.svg-inject"),{useCache:!0})})},backgroundImage:()=>{s(".bg-image").css("background-image",function(){return"url("+s(this).data("image-src")+")"})},backgroundImageMobile:()=>{!(navigator.userAgent.match(/Android/i)||navigator.userAgent.match(/webOS/i)||navigator.userAgent.match(/iPhone/i)||navigator.userAgent.match(/iPad/i)||"MacIntel"===navigator.platform&&1<navigator.maxTouchPoints||navigator.userAgent.match(/iPod/i)||navigator.userAgent.match(/BlackBerry/i))||s(".image-wrapper").addClass("mobile")},imageHoverOverlay:()=>{s(".overlay:not(.caption) > a, .overlay:not(.caption) > span").prepend('<span class="bg"></span>')},rellax:()=>{s(".rellax").length&&(window.onload=function(){var t=new Rellax(".rellax",{speed:2,center:!0,breakpoints:[576,992,1201]});s(".projects-overflow").imagesLoaded(function(){t.refresh()})})},scrollCue:()=>{scrollCue.init({interval:-400,duration:700,percentage:.8}),scrollCue.update()},showMoreItems:()=>{s(".show-more").each(function(){var t=s(this);t.showMoreItems({startNum:t.data("showstart"),afterNum:t.data("showafter"),moreText:"Show More",after:function(){e.isotope(),e.rellax(),e.scrollCue()}})})},owlCarousel:()=>{s(".basic-slider").each(function(){var t=s(this);t.owlCarousel({items:1,nav:t.data("nav"),navText:["<i class='uil-arrow-left'></i>","<i class='uil-arrow-right'></i>"],dots:!0,dotsEach:!0,autoHeight:!0,loop:!1,rewind:!0,margin:t.data("margin")})}),s(".carousel").each(function(){var t=s(this);t.owlCarousel({autoHeight:!1,nav:t.data("nav"),navText:["<i class='uil-arrow-left'></i>","<i class='uil-arrow-right'></i>"],dots:t.data("dots"),dotsEach:!0,loop:t.data("loop"),margin:t.data("margin"),autoplay:t.data("autoplay"),autoplayTimeout:t.data("autoplay-timeout"),responsive:t.data("responsive")})})},heroSlider:()=>{s(".hero-slider").each(function(){var t=s(this);t.owlCarousel({items:1,nav:s(this).data("nav"),navText:["<i class='uil-arrow-left'></i>","<i class='uil-arrow-right'></i>"],dots:s(this).data("dots"),dotsEach:!0,autoHeight:!1,loop:!1,rewind:!0,autoplay:t.data("autoplay"),autoplayTimeout:5e3,onInitialized:function(){t.trigger("stop.owl.autoplay"),setTimeout(function(){t.trigger("play.owl.autoplay")},3e3)},autoplayHoverPause:!0,margin:0,animateIn:"fadeIn",animateOut:"fadeOut"}),t.on("changed.owl.carousel",t=>{s(".owl-item.active").find(".animated-caption").each(function(t,e){s(this).removeClass("animate__animated").removeClass(s(this).data("anim"))}),s(".owl-item").eq(t.item.index).find(".animated-caption").each(function(t,e){var a=s(this).data("anim-delay"),o=s(this).data("anim-duration");s(this).addClass("animate__animated").addClass(s(this).data("anim")).css({"animation-delay":a+"ms","animation-duration":o+"ms"})})}),t.trigger("refresh.owl.carousel")})},animatedCaptions:()=>{s(".animated-captions").find(".animated-caption").each(function(){var t=s(this).data("anim-delay"),e=s(this).data("anim-duration");s(this).addClass("animate__animated").addClass(s(this).data("anim")).css({"animation-delay":t+"ms","animation-duration":e+"ms"})})},lightbox:()=>{GLightbox({selector:"*[data-glightbox]",touchNavigation:!0,loop:!1,zoomable:!1,autoplayVideos:!0,moreLength:0,slideExtraAttributes:{poster:""},plyr:{css:"",js:"",config:{ratio:"16:9",fullscreen:{enabled:!1,iosNative:!1},youtube:{noCookie:!0,rel:0,showinfo:0,iv_load_policy:3},vimeo:{byline:!1,portrait:!1,title:!1,transparent:!1}}}})},plyr:()=>{Plyr.setup(".player",{loadSprite:!0})},progressBar:()=>{var o=s(".progressbar.line"),n=s(".progressbar.semi-circle");o.each(function(t){var e=new ProgressBar.Line(this,{strokeWidth:6,trailWidth:6,duration:3e3,easing:"easeInOut",text:{style:{color:"inherit",position:"absolute",right:"0",top:"-30px",padding:0,margin:0,transform:null},autoStyleContainer:!1},step:function(t,e,a){e.setText(Math.round(100*e.value())+" %")}}),a=s(this).attr("data-value")/100;o.waypoint(function(){e.animate(a)},{offset:"100%"})}),n.each(function(t){var e=new ProgressBar.SemiCircle(this,{strokeWidth:6,trailWidth:6,duration:2e3,easing:"easeInOut",step:function(t,e,a){e.setText(Math.round(100*e.value()))}}),a=s(this).attr("data-value")/100;n.waypoint(function(){e.animate(a)},{offset:"100%"})})},pageProgress:()=>{var a,o,t;s(".progress-wrap").length&&(a=document.querySelector(".progress-wrap path"),o=a.getTotalLength(),a.style.transition=a.style.WebkitTransition="none",a.style.strokeDasharray=o+" "+o,a.style.strokeDashoffset=o,a.getBoundingClientRect(),a.style.transition=a.style.WebkitTransition="stroke-dashoffset 10ms linear",(t=function(){var t=s(window).scrollTop(),e=s(document).height()-s(window).height();a.style.strokeDashoffset=o-t*o/e})(),s(window).scroll(t),jQuery(window).on("scroll",function(){50<jQuery(this).scrollTop()?jQuery(".progress-wrap").addClass("active-progress"):jQuery(".progress-wrap").removeClass("active-progress")}),jQuery(".progress-wrap").on("click",function(t){return t.preventDefault(),jQuery("html, body").animate({scrollTop:0},550),!1}))},counterUp:()=>{var a=window.counterUp.default;s(".counter").each(function(t,e){new Waypoint({element:s(this),handler:function(){a(e,{duration:1e3,delay:50}),this.destroy()},offset:"bottom-in-view"})})},bsTooltips:()=>{[].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]')).map(function(t){return new bootstrap.Tooltip(t)})},bsPopovers:()=>{[].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]')).map(function(t){return new bootstrap.Popover(t)})},bsModal:()=>{var t,e=window.innerWidth-s("body").innerWidth();document.querySelectorAll(".modal").forEach(t=>{t.addEventListener("show.bs.modal",function(t){s(".navbar.fixed").css("padding-right",e),s(".progress-wrap").css("margin-right",e)}),t.addEventListener("hidden.bs.modal",function(t){s(".navbar.fixed").css("padding-right",""),s(".progress-wrap").css("margin-right","")})}),0<s(".modal-popup").length&&(t=new bootstrap.Modal(document.querySelector(".modal-popup")),document.querySelector(".modal-popup"),setTimeout(function(){t.show()},200))},iTooltip:()=>{new iTooltip(".itooltip").init({className:"itooltip-inner",indentX:15,indentY:15,positionX:"right",positionY:"bottom"})},contactForm:()=>{window.addEventListener("load",function(){var t=document.querySelectorAll(".contact-form.needs-validation");Array.prototype.filter.call(t,function(e){e.addEventListener("submit",function(t){!1===e.checkValidity()&&(t.preventDefault(),t.stopPropagation()),e.classList.add("was-validated"),!0===e.checkValidity()&&(t.preventDefault(),e.classList.remove("was-validated"),s.ajax({type:"POST",url:"assets/php/contact.php",data:s(this).serialize(),success:function(t){var e="alert-"+t.type,a=t.message,t='<div class="alert '+e+' alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'+a+"</div>";e&&a&&(s(".contact-form").find(".messages").html(t),s(".contact-form")[0].reset())}}))},!1)})},!1)},pricingSwitcher:()=>{s(".pricing-wrapper").each(function(t,e){var a=s(e);a.find(".pricing-switcher").on("click",function(){a.find(".pricing-switcher").toggleClass("pricing-switcher-active"),a.find(".price").removeClass("price-hidden"),a.find(".price").toggleClass("price-show price-hide")})})},textRotator:()=>{null!=document.querySelector(".rotator-zoom")&&new ReplaceMe(document.querySelector(".rotator-zoom"),{animation:"animate__animated animate__zoomIn",speed:2500,separator:",",clickChange:!1,loopCount:"infinite"}),null!=document.querySelector(".rotator-fade")&&new ReplaceMe(document.querySelector(".rotator-fade"),{animation:"animate__animated animate__fadeInDown",speed:2500,separator:",",clickChange:!1,loopCount:"infinite"})},codeSnippet:()=>{document.querySelectorAll(".code-wrapper-inner").forEach(function(t){t.insertAdjacentHTML("beforebegin",'<button type="button" class="btn btn-sm btn-white rounded-pill btn-clipboard">Copy</button>')}),new ClipboardJS(".btn-clipboard",{target:function(t){return t.nextElementSibling}}).on("success",t=>{t.trigger.textContent="Copied!",t.clearSelection(),setTimeout(()=>{t.trigger.textContent="Copy"},2e3)}),new ClipboardJS(".btn-copy-icon").on("success",function(t){t.clearSelection(),t.trigger.textContent="Copied!",window.setTimeout(function(){t.trigger.textContent="Copy"},2300)})}};e.init()}(jQuery);
+;
+(function($) {
+  'use strict';
+  var theme = {
+    /**
+     * Theme's components/functions list
+     * Comment out or delete the unnecessary component.
+     * Some components have dependencies (plugins).
+     * Do not forget to remove dependency from src/js/vendor/ and recompile it.
+    */
+    init: () => {
+      theme.stickyHeader();
+      theme.dropdownAnimation();
+      theme.headerButtons();
+      theme.isotope();
+      theme.onepageHeaderOffset();
+      theme.onepageNavLinks();
+      theme.anchorSmoothScroll();
+      theme.svgInject();
+      theme.backgroundImage();
+      theme.backgroundImageMobile();
+      theme.backgroundVideo();
+      theme.imageHoverOverlay();
+      theme.rellax();
+      theme.scrollCue();
+      theme.showMoreItems();
+      theme.owlCarousel();
+      theme.heroSlider();
+      theme.animatedCaptions();
+      theme.lightGallery();
+      theme.plyr();
+      theme.progressBar();
+      theme.pageProgress();
+      theme.counterUp();
+      theme.bsTooltips();
+      theme.bsPopovers();
+      theme.bsModal();
+      theme.iTooltip();
+      theme.contactForm();
+      theme.pricingSwitcher();
+      theme.codeSnippet();
+    },
+    /**
+     * Sticky Header
+     * Enables sticky behavior on navigation on page scroll
+     * Requires assets/js/vendor/headhesive.min.js
+    */
+    stickyHeader: () => {
+      if ($(".navbar").length) {
+        var options = {
+          offset: 350,
+          offsetSide: 'top',
+          classes: {
+            clone: 'banner--clone fixed ',
+            stick: 'banner--stick',
+            unstick: 'banner--unstick'
+          },
+          onStick: function() {
+            $($.SmartMenus.Bootstrap.init);
+            var $language_dropdown = $('.navbar:not(.fixed) .language-select .dropdown-menu');
+            $language_dropdown.removeClass('show');
+          },
+          onUnstick: function() {
+            var $language_sticky_dropdown = $('.navbar.fixed .language-select .dropdown-menu');
+            $language_sticky_dropdown.removeClass('show');
+          }
+        };
+        var banner = new Headhesive('.navbar', options);
+      }
+    },
+    /**
+     * Dropdown Animation
+     * Adds a custom animation to dropdown menus
+    */
+    dropdownAnimation: () => {
+      $('.navbar .navbar-nav:not(.navbar-nav-other)').bind({
+        'show.smapi': function(e, menu) {
+          $(menu).removeClass('hide-animation').addClass('show-animation');
+        },
+        'hide.smapi': function(e, menu) {
+          $(menu).removeClass('show-animation').addClass('hide-animation');
+        }
+      }).on('animationend webkitAnimationEnd oanimationend MSAnimationEnd', 'ul', function(e) {
+        $(this).removeClass('show-animation hide-animation');
+        e.stopPropagation();
+      });
+    },
+    /**
+     * Header Buttons
+     * Open/close offcanvas menus on click of header buttons
+    */
+    headerButtons: () => {
+      var $header_hamburger = $('.hamburger.animate');
+      var $language_select = $('.language-select .dropdown-menu');
+      var $navbar_offcanvas = $('.offcanvas-nav');
+      var $navbar_offcanvas_toggle = $('[data-toggle="offcanvas-nav"]');
+      var $navbar_offcanvas_close = $('.offcanvas-nav-close');
+      var $info_offcanvas = $('.offcanvas-info');
+      var $info_offcanvas_close = $('.offcanvas-info-close');
+      var $info_offcanvas_toggle = $('[data-toggle="offcanvas-info"]');
+      $header_hamburger.on("click", function() {
+        $header_hamburger.toggleClass("active");
+      });
+      $navbar_offcanvas_toggle.on("click", function(e) {
+        e.stopPropagation();
+        $navbar_offcanvas.toggleClass('open');
+      });
+      $navbar_offcanvas.on("click", function(e) {
+        e.stopPropagation();
+      });
+      $navbar_offcanvas_close.on("click", function(e) {
+        $navbar_offcanvas.removeClass('open');
+        $header_hamburger.removeClass('active');
+      });
+      $info_offcanvas_toggle.on("click", function(e) {
+        e.stopPropagation();
+        $info_offcanvas.toggleClass('open');
+      });
+      $info_offcanvas.on("click", function(e) {
+        e.stopPropagation();
+      });
+      $(document).on('click', function() {
+        $navbar_offcanvas.removeClass('open');
+        $info_offcanvas.removeClass('open');
+        $header_hamburger.removeClass('active');
+      });
+      $info_offcanvas_close.on("click", function(e) {
+        $info_offcanvas.removeClass('open');
+      });
+      $('.onepage .navbar li a.scroll').on('click', function() {
+        $navbar_offcanvas.removeClass('open');
+        $header_hamburger.removeClass('active');
+      });
+    },
+    /**
+     * Isotope
+     * Enables isotope grid layout and filtering
+     * Requires assets/js/vendor/isotope.pkgd.min.js
+     * Requires assets/js/vendor/imagesloaded.pkgd.min.js
+    */
+    isotope: () => {
+      // for each container
+      $('.grid').each(function(i, gridContainer) {
+        var $gridContainer = $(gridContainer);
+        // init isotope for container
+        var $grid = $gridContainer.find('.isotope').imagesLoaded(function() {
+          $grid.isotope({
+            itemSelector: '.item',
+            layoutMode: 'masonry',
+            percentPosition: true,
+            masonry: {
+              columnWidth: $grid.width() / 12
+            },
+            transitionDuration: '0.7s'
+          })
+        });
+        $(window).resize(function() {
+          $grid.isotope({
+            masonry: {
+              columnWidth: $grid.width() / 12
+            }
+          });
+        });
+        $(window).on("load", function() {
+          $grid.isotope({
+            masonry: {
+              columnWidth: $grid.width() / 12
+            }
+          });
+        });
+        // initi filters for container
+        $gridContainer.find('.isotope-filter').on('click', 'a', function() {
+          var filterValue = $(this).attr('data-filter');
+          $grid.isotope({
+            filter: filterValue
+          });
+        });
+      });
+      $('.isotope-filter').each(function(i, buttonGroup) {
+        var $buttonGroup = $(buttonGroup);
+        $buttonGroup.on('click', 'a', function() {
+          $buttonGroup.find('.active').removeClass('active');
+          $(this).addClass('active');
+        });
+      });
+    },
+    /**
+     * Onepage Header Offset
+     * Adds an offset value to anchor point equal to sticky header height on a onepage
+    */
+    onepageHeaderOffset: () => {
+      var header_height = $('.navbar:not(.banner--clone)').outerHeight();
+      var shrinked_header_height = 75;
+      var shrinkedStyle = {
+        'padding-top': '' + shrinked_header_height + 'px',
+        'margin-top': '-' + shrinked_header_height + 'px'
+      };
+      $('.onepage section').css(shrinkedStyle);
+      var unshrinkedStyle = {
+        'padding-top': '' + header_height + 'px',
+        'margin-top': '-' + header_height + 'px'
+      };
+      $('.onepage section:first-of-type').css(unshrinkedStyle);
+    },
+    /**
+     * Onepage Nav Links
+    */
+    onepageNavLinks: () => {
+      var empty_a = $('.onepage .navbar ul.navbar-nav a[href="#"]');
+      empty_a.on('click', function(e) {
+        e.preventDefault();
+      });
+    },
+    /**
+     * Anchor Smooth Scroll
+     * Adds smooth scroll animation to anchor links
+    */
+    anchorSmoothScroll: () => {
+      $(function() {
+        setTimeout(function() {
+          if (location.hash) {
+            window.scrollTo(0, 0);
+            var target = location.hash.split('#');
+            smoothScrollTo($('#' + target[1]));
+          }
+        }, 1);
+        $('a.scroll[href*="#"]:not([href="#"])').on('click', function() {
+          if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+            smoothScrollTo($(this.hash));
+            return false;
+          }
+        });
+    
+        function smoothScrollTo(target) {
+          var target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+          if (target.length) {
+            $('html,body').animate({
+              scrollTop: target.offset().top
+            }, 1500, 'easeInOutExpo');
+          }
+        }
+      });
+    },
+    /**
+     * SVGInject
+     * Replaces an img element with an inline SVG so you can apply colors to your SVGs
+     * Requires assets/js/vendor/svg-inject.min.js
+    */
+    svgInject: () => {
+      SVGInject(document.querySelectorAll("img.svg-inject"));
+    },
+    /**
+     * Background Image
+     * Adds a background image link via data attribute "data-image-src"
+    */
+    backgroundImage: () => {
+      $(".bg-image").css('background-image', function() {
+        var bg = ('url(' + $(this).data("image-src") + ')');
+        return bg;
+      });
+    },
+    /**
+     * backgroundImageMobile
+     * Adds .mobile class to background images on mobile devices for styling purposes
+    */
+    backgroundImageMobile: () => {
+      var isMobile = (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i)) ? true : false;
+      if (isMobile) {
+        $('.image-wrapper').addClass('mobile');
+      }
+    },
+    /**
+     * Background Video
+     * Turns an HTML5 video into a background, scaling to aspect ratio.
+    */
+    backgroundVideo: () => {
+      $('.video-wrapper video').backgroundVideo({
+        $outerWrap: $('.video-wrapper'),
+        pauseVideoOnViewLoss: false,
+        parallaxOptions: {
+          effect: 6
+        }
+      });
+    },
+    /**
+     * Image Hover Overlay
+     * Adds span.bg inside .overlay for simpler markup and styling purposes
+    */
+    imageHoverOverlay: () => {
+      $('.overlay:not(.caption) > a, .overlay:not(.caption) > span').prepend('<span class="bg"></span>');
+    },
+    /**
+     * Rellax.js
+     * Adds parallax animation to shapes and elements
+     * Requires assets/js/vendor/rellax.min.js
+    */
+    rellax: () => {
+      if ($(".rellax").length) {
+        window.onload = function(){
+          var rellax = new Rellax('.rellax', {
+            speed: 2,
+            center: true,
+            breakpoints: [576, 992, 1201]
+          });
+          $('.projects-overflow').imagesLoaded(function() {
+            rellax.refresh();
+          });
+        }
+      }
+    },
+    /**
+     * scrollCue.js
+     * Enables showing elements by scrolling
+     * Requires assets/js/vendor/scrollCue.min.js
+    */
+    scrollCue: () => {
+      scrollCue.init({
+        interval: -400,
+        duration: 700,
+        percentage: 0.8
+      });
+      scrollCue.update();
+    },
+    /**
+     * Show More Items
+     * Loads more elements for lists
+     * Requires assets/js/vendor/showMoreItems.min.js
+    */
+    showMoreItems: () => {
+      $('.show-more').each(function() {
+        var $showmore = $(this);
+        $showmore.showMoreItems({
+          startNum: $showmore.data("showstart"),
+          afterNum: $showmore.data("showafter"),
+          moreText: 'Show More',
+          after: function() {
+            theme.isotope();
+            theme.rellax();
+            theme.scrollCue();
+          }
+        });
+      });
+    },
+    /**
+     * Owl Carousel
+     * Creates carousel sliders
+     * Requires assets/js/vendor/owl.carousel.min.js
+    */
+    owlCarousel: () => {
+      $('.basic-slider').each(function() {
+        var $bslider = $(this);
+        $bslider.owlCarousel({
+          items: 1,
+          nav: $bslider.data("nav"),
+          navText: ["<i class='uil-arrow-left'></i>", "<i class='uil-arrow-right'></i>"],
+          dots: true,
+          dotsEach: true,
+          autoHeight: true,
+          loop: true,
+          margin: $bslider.data("margin")
+        });
+      });
+      $('.carousel').each(function() {
+        var $carousel = $(this);
+        $carousel.owlCarousel({
+          autoHeight: false,
+          nav: $carousel.data("nav"),
+          navText: ["<i class='uil-arrow-left'></i>", "<i class='uil-arrow-right'></i>"],
+          dots: $carousel.data("dots"),
+          dotsEach: true,
+          loop: $carousel.data("loop"),
+          margin: $carousel.data("margin"),
+          autoplay: $carousel.data("autoplay"),
+          autoplayTimeout: $carousel.data("autoplay-timeout"),
+          responsive: $carousel.data("responsive")
+        });
+      });
+    },
+    /**
+     * Hero Slider
+     * Creates hero sliders with animated captions
+     * Requires assets/js/vendor/owl.carousel.min.js
+    */
+    heroSlider: () => {
+      $('.hero-slider').each(function() {
+        var $hslider = $(this);
+        $hslider.owlCarousel({
+          items: 1,
+          nav: $(this).data("nav"),
+          navText: ["<i class='uil-arrow-left'></i>", "<i class='uil-arrow-right'></i>"],
+          dots: $(this).data("dots"),
+          dotsEach: true,
+          autoHeight: false,
+          loop: true,
+          autoplay: $hslider.data("autoplay"),
+          autoplayTimeout: 5000,
+          onInitialized: function() { 
+            $hslider.trigger('stop.owl.autoplay');
+              setTimeout(function() {$hslider.trigger('play.owl.autoplay')}, 3000)   
+          },
+          autoplayHoverPause: true,
+          margin: 0,
+          animateIn: 'fadeIn',
+          animateOut: 'fadeOut'
+        });
+        $hslider.on("changed.owl.carousel", e => {
+          $(".owl-item.active").find(".animated-caption").each(function(index, value) {
+            $(this).removeClass("animate__animated").removeClass($(this).data("anim"));
+          });
+          var $currentOwlItem = $(".owl-item").eq(e.item.index);
+          $currentOwlItem.find(".animated-caption").each(function(index, value) {
+            var a = $(this).data("anim-delay");
+            var b = $(this).data("anim-duration");
+            $(this).addClass("animate__animated").addClass($(this).data("anim")).css({
+              "animation-delay": a + "ms",
+              "animation-duration": b + "ms"
+            });
+          });
+        });
+        $hslider.trigger("refresh.owl.carousel");
+      });
+    },
+    /**
+     * Animated Captions
+     * Enables data attributes "data-anim-delay" and "data-anim-duration" for .animated-caption
+     * Requires assets/css/vendor/animate.css
+    */
+    animatedCaptions: () => {
+      var $animatedCaptions = $(".animated-captions");
+      $animatedCaptions.find(".animated-caption").each(function() {
+        var a = $(this).data("anim-delay");
+        var b = $(this).data("anim-duration");
+        $(this).addClass("animate__animated").addClass($(this).data("anim")).css({
+          "animation-delay": a + "ms",
+          "animation-duration": b + "ms"
+        });
+      });
+    },
+    /**
+     * Lightgallery
+     * Enables lightbox functionality
+     * Requires assets/js/vendor/lightgallery.min.js
+    */
+    lightGallery: () => {
+      var $lg = $('.light-gallery-wrapper');
+      $lg.lightGallery({
+        thumbnail: false,
+        selector: '.lightbox',
+        mode: 'lg-fade',
+        download: false,
+        autoplayControls: false,
+        zoom: false,
+        fullScreen: false,
+        videoMaxWidth: '1000px',
+        loop: false,
+        counter: false,
+        hash: false,
+        closable: true,
+        mousewheel: true,
+        videojs: true,
+        videoAutoplay: true,
+        share: false
+      });
+    },
+    /**
+     * Plyr
+     * Enables media player
+     * Requires assets/js/vendor/plyr.js
+    */
+    plyr: () => {
+      var players = Plyr.setup('.player', {
+        loadSprite: true,
+      });
+    },
+    /**
+     * Progressbar
+     * Enables animated progressbars
+     * Requires assets/js/vendor/progressbar.min.js
+    */
+    progressBar: () => {
+      var $pline = $('.progressbar.line');
+      $pline.each(function(i) {
+        var line = new ProgressBar.Line(this, {
+          strokeWidth: 3,
+          trailWidth: 3,
+          duration: 3000,
+          easing: 'easeInOut',
+          text: {
+            style: {
+              color: 'inherit',
+              position: 'absolute',
+              right: '0',
+              top: '-30px',
+              padding: 0,
+              margin: 0,
+              transform: null
+            },
+            autoStyleContainer: false
+          },
+          step: function(state, line, attachment) {
+            line.setText(Math.round(line.value() * 100) + ' %');
+          }
+        });
+        var value = ($(this).attr('data-value') / 100);
+        $pline.waypoint(function() {
+          line.animate(value);
+        }, {
+          offset: '100%'
+        })
+      });
+    },
+    /**
+     * Page Progress
+     * Shows page progress on the bottom right corner of the page
+    */
+    pageProgress: () => {
+      if ($(".progress-wrap").length) {
+        var progressPath = document.querySelector('.progress-wrap path');
+        var pathLength = progressPath.getTotalLength();
+        progressPath.style.transition = progressPath.style.WebkitTransition = 'none';
+        progressPath.style.strokeDasharray = pathLength + ' ' + pathLength;
+        progressPath.style.strokeDashoffset = pathLength;
+        progressPath.getBoundingClientRect();
+        progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';
+        var updateProgress = function() {
+          var scroll = $(window).scrollTop();
+          var height = $(document).height() - $(window).height();
+          var progress = pathLength - (scroll * pathLength / height);
+          progressPath.style.strokeDashoffset = progress;
+        }
+        updateProgress();
+        $(window).scroll(updateProgress);
+        var offset = 50;
+        var duration = 550;
+        jQuery(window).on('scroll', function() {
+          if (jQuery(this).scrollTop() > offset) {
+            jQuery('.progress-wrap').addClass('active-progress');
+          } else {
+            jQuery('.progress-wrap').removeClass('active-progress');
+          }
+        });
+        jQuery('.progress-wrap').on('click', function(event) {
+          event.preventDefault();
+          jQuery('html, body').animate({
+            scrollTop: 0
+          }, duration);
+          return false;
+        })
+      }
+    },
+    /**
+     * Counter Up
+     * Counts up to a targeted number when the number becomes visible
+     * Requires assets/js/vendor/counterup.min.js
+     * Requires assets/js/vendor/jquery.waypoints.min.js
+    */
+    counterUp: () => {
+      var counterUp = window.counterUp["default"]; // import counterUp from "counterup2"	
+      var $counters = $(".counter");
+      /* Start counting, do this on DOM ready or with Waypoints. */
+      $counters.each(function(ignore, counter) {
+        var waypoint = new Waypoint({
+          element: $(this),
+          handler: function() {
+            counterUp(counter, {
+              duration: 1000,
+              delay: 50
+            });
+            this.destroy();
+          },
+          offset: 'bottom-in-view',
+        });
+      });
+    },
+    /**
+     * Bootstrap Tooltips
+     * Enables Bootstrap tooltips
+     * Requires Poppers library
+    */
+    bsTooltips: () => {
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+      })
+    },
+    /**
+     * Bootstrap Popovers
+     * Enables Bootstrap popovers
+     * Requires Poppers library
+    */
+    bsPopovers: () => {
+      var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+      var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl)
+      })
+    },
+    /**
+     * Bootstrap Modal
+     * Enables Bootstrap modals and modal popup
+    */
+    bsModal: () => {
+      var scr_size = window.innerWidth;
+      var scr_avail = $('body').innerWidth();
+      var pad_right = scr_size - scr_avail;
+      var myModalEl = document.querySelectorAll('.modal');
+      myModalEl.forEach(myModalEl => {
+        myModalEl.addEventListener('show.bs.modal', function(e) {
+          $('.navbar.fixed').css('padding-right', pad_right);
+          $('.progress-wrap').css('margin-right', pad_right);
+        })
+        myModalEl.addEventListener('hidden.bs.modal', function(e) {
+          $('.navbar.fixed').css('padding-right', '');
+          $('.progress-wrap').css('margin-right', '');
+        })
+      });
+      if ($('.modal-popup').length > 0) {
+        var myModalPopup = new bootstrap.Modal(document.querySelector('.modal-popup'));
+        var myModalEl2 = document.querySelector('.modal-popup');
+        setTimeout(function() {
+          myModalPopup.show();
+        }, 200);
+      }
+    },
+    /**
+     * iTooltip
+     * Enables custom tooltip style for image hover docs/elements/hover.html
+     * Requires assets/js/vendor/itooltip.min.js
+    */
+    iTooltip: () => {
+      var tooltip = new iTooltip('.itooltip')
+      tooltip.init({
+        className: 'itooltip-inner',
+        indentX: 15,
+        indentY: 15,
+        positionX: 'right',
+        positionY: 'bottom'
+      })
+    },
+    /**
+     * Contact Form
+     * Contact form validation (Bootstrap) sends messages when validated and shows success/fail messages
+    */
+    contactForm: () => {
+      (function() {
+        "use strict";
+        window.addEventListener("load", function() {
+          var forms = document.getElementsByClassName("needs-validation");
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener("submit", function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add("was-validated");
+              // Here you are going to add your ajax call after checking if the form validation is valid
+              if (form.checkValidity() === true) {
+                event.preventDefault();
+                // To reset the appearance of the form (for instance, in the case of dynamic form submissions using AJAX), remove the .was-validated class from the <form> again after submission. (boostrap doc)
+                form.classList.remove("was-validated");
+                $.ajax({
+                  type: "POST",
+                  url: "assets/php/contact.php",
+                  data: $(this).serialize(),
+                  success: function(data) {
+                    // data = JSON object that contact.php returns
+                    // we recieve the type of the message: success x danger and apply it to the
+                    var messageAlert = 'alert-' + data.type;
+                    var messageText = data.message;
+                    // let's compose Bootstrap alert box HTML
+                    var alertBox = '<div class="alert ' + messageAlert + ' alert-dismissible fade show"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' + messageText + '</div>';
+                    // If we have messageAlert and messageText
+                    if (messageAlert && messageText) {
+                      // inject the alert to .messages div in our form
+                      $('.contact-form').find('.messages').html(alertBox);
+                      // empty the form
+                      $('.contact-form')[0].reset();
+                    }
+                  }
+                });
+              }
+            }, false);
+          });
+        }, false);
+      })();
+    },
+    /**
+     * Pricing Switcher
+     * Enables monthly/yearly switcher seen on pricing tables
+    */
+    pricingSwitcher: () => {
+      $('.pricing-wrapper').each(function(i, container) {
+        var $container = $(container);
+        $container.find(".pricing-switcher").on('click', function() {
+          $container.find(".pricing-switcher").toggleClass('pricing-switcher-active');
+          $container.find(".price").removeClass('price-hidden');
+          $container.find(".price").toggleClass('price-show price-hide');
+        });
+      });
+    },
+    /**
+     * Clipboard.js
+     * Enables clipboard on docs
+     * Requires assets/js/vendor/clipboard.min.js
+    */
+    codeSnippet: () => {
+      var btnHtml = '<button type="button" class="btn btn-sm btn-white rounded-pill btn-clipboard">Copy</button>'
+      document.querySelectorAll('.code-wrapper-inner')
+        .forEach(function (element) {
+          element.insertAdjacentHTML('beforebegin', btnHtml)
+        })
+      var clipboard = new ClipboardJS('.btn-clipboard', {
+        target: function (trigger) {
+          return trigger.nextElementSibling
+        }
+      })
+      clipboard.on('success', event => {
+        event.trigger.textContent = 'Copied!';
+        event.clearSelection();
+        setTimeout(() => {
+          event.trigger.textContent = 'Copy Image Code';
+        }, 2000);
+      });
+      var copyIconCode = new ClipboardJS('.btn-copy-icon');
+      copyIconCode.on('success', function(event) {
+        event.clearSelection();
+        event.trigger.textContent = 'Copied!';
+        window.setTimeout(function() {
+          event.trigger.textContent = 'Copy';
+        }, 2300);
+      });
+    },
+  }
+  /**
+   * Init theme core
+   */
+  theme.init();
+})(jQuery);
