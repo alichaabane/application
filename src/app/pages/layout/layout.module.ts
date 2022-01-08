@@ -5,6 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { WorkComponent } from './work/work.component';
 import { BlogComponent } from './blog/blog.component';
 import { FooterComponent } from './footer/footer.component';
+import {ApiService} from "../../shared/services/api.service";
 
 
 
@@ -12,6 +13,7 @@ import { FooterComponent } from './footer/footer.component';
   declarations: [LayoutComponent, HeaderComponent, WorkComponent, BlogComponent, FooterComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  providers: [ApiService]
 })
 export class LayoutModule { }
